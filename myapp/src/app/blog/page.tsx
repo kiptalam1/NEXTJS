@@ -1,15 +1,12 @@
-export default async function BlogPostPage({
-	params,
-}: {
-	params: Promise<{ slug: string }>;
-}) {
-	const { slug } = await params;
-	const post = await getPost(slug);
+export default async function BlogPostPage() {
+	const data = await fetch("https://api.vercel.app/blog");
+	const posts = await data.json();
 
 	return (
-		<div>
-			<h1>{post.title}</h1>
-			<p>{post.content}</p>
-		</div>
+		<ul>
+			{posts.map((post) => (
+				<li key={post.id}>{post.title}</li>
+			))}
+		</ul>
 	);
 }

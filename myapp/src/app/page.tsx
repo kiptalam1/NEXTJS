@@ -1,5 +1,10 @@
-// import Image from "next/image";
+import { Suspense } from "react";
+import { Profile } from "./ui/profile";
 
-export default function Home() {
-  return <h1>Hello there!</h1>
+export default function Page() {
+	return (
+		<Suspense fallback={<div>Loading profile...</div>}>
+			<Profile />
+		</Suspense>
+	);
 }
